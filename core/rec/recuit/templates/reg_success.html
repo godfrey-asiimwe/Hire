@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block page_content %}
+{% load crispy_forms_tags %}
+ <section class="section">
+      <div class="d-flex flex-wrap align-items-stretch">
+        <div class="col-lg-6 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
+          <div class="p-4 m-3">
+            <div class="container">
+                <h2 class="font-weight-bold mt-3">Registration Status</h2>
+                <hr>
+                <a class="btn btn-success">You have registered successfully, please go a head and shop</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 order-lg-2 order-1  background-walk-y position-relative overlay-gradient-bottom" >
+            <a><img src="../static/img/action.jpg" style="align:right !important;width:100%;"  class="img-fluid border"></a>
+        </div>
+      </div>
+    </section>
+{% endblock %}

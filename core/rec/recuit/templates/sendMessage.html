@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block page_content %}
+{% load crispy_forms_tags %}
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Dashboard</h1>
+          </div>
+          <div class="row">
+                <!-- DataTales Example -->
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4>Send an SMS</h4>
+                      </div>
+                      <div class="card-body mt-5">
+                             <form action = "" method = "post" class="">
+                                    {% csrf_token %}
+                                   <div class="row">
+                                        <div class="form-group col-4">
+                                            <label>Select Account</label>
+                                             <select id="account" name="account" class="form-control">
+                                               {% for account in accounts %}
+                                                <option value="{{ account.id }}">{{ account.acc_no }}</option>
+                                                {% endfor %}
+                                              </select>
+                                        </div>
+                                        <div class="form-group col-4">
+                                             <label>Enter Message</label>
+                                             <input  type="text" class="form-control" id="message" name="message" autofocus >
+                                        </div>
+                                         <div class="form-group col-4">
+                                              <select id="year" name="year" class="form-control" hidden>
+                                               {% for year in years %}
+                                                <option value="{{ year.id }}">{{ year.code }}</option>
+                                                {% endfor %}
+                                              </select>
+                                        </div>
+                                  </div>
+                                   <input type="submit"  class="btn btn-primary btn-lg btn-block col-2" value="Submit">
+                             </form>
+                      </div>
+                    </div>
+                </div>
+          </div>
+        </section>
+      </div>
+{% endblock %}

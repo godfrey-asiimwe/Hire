@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block page_content %}
+{% load humanize %}
+{% load user_tags %}
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>General Reports </h1>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                  <i class="far fa-user" style="margin-top:30"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>No. of applicants </h4>
+                  </div>
+                  <div class="card-body">
+                    {{applications}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-danger">
+                  <i class="far fa-file" style="margin-top:30"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>No of Jobs</h4>
+                  </div>
+                  <div class="card-body">
+                   {{totalJobs |intcomma}}
+                  </div>
+                </div>
+              </div>
+            </div>
+             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-danger">
+                  <i class="far fa-newspaper" style="margin-top:30"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Hired</h4>
+                  </div>
+                  <div class="card-body">
+                   {{totatAssets|intcomma}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4>Jobs Available</h4>
+                      </div>
+                      <div class="card-body p-0">
+                        <div class="table-responsive" style="padding: 20px !important;">
+                          <table class="table table-striped" id="dataTable" width="100%" style="padding:50px !important;" cellspacing="0">
+                            <thead>
+                               <tr>
+                                    <th>Job Type</th>
+                                    <th>Name</th>
+                                    <th>Activities</th>
+                                    <th>Desc</th>
+                                    <th>requirements</th>
+                                    <th>Deadline</th>
+                                   <th>Status</th>
+                                </tr>
+                            </thead>
+
+                              <tbody>
+                                {% for job in jobs %}
+                                    <tr>
+                                        <td>{{job.jobType}}</td>
+                                        <td>{{job.name}}</td>
+                                        <td>{{job.activities}}</td>
+                                         <td>{{job.description}}</td>
+                                        <td>{{job.requirements}}</td>
+                                        <td>{{job.deadline}}</td>
+                                        <td><a href="apply/{{job.id}}" class="button">Apply</a></td>
+                                    </tr>
+                                {% endfor %}
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+          </div>
+        </section>
+      </div>
+{% endblock %}
