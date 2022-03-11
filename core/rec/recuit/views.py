@@ -200,3 +200,33 @@ def expiredJobs(request):
 
     context = {'jobs': jobs}
     return render(request, 'activeJobs.html', context)
+
+
+def activeApps(request):
+    today = datetime.datetime.today()
+    jobs = Job.objects.all().filter(deadline__gt=today)
+
+    context = {'jobs': jobs}
+    return render(request, 'applicants.html', context)
+
+
+def expiredApps(request):
+    today = datetime.datetime.today()
+    jobs = Job.objects.all().filter(deadline__lt=today)
+
+    context = {'jobs': jobs}
+    return render(request, 'applicants.html', context)
+
+
+def showApplicants(request, id):
+    applications = Applications.objects.filter(job=id)
+
+    job = Job.objects.get(id=id)
+
+    userprofile = []
+    for applicant in applications:
+
+        userprofile += UserProfile.objects.filter(user=applicant.user)
+
+    context = {'applications': applications,'job':job,'userprofile': userprofile}
+    return render(request, 'viewApplicants.html', context)

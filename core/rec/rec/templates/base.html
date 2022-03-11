@@ -73,13 +73,22 @@
                   <li><a class="nav-link" href="/notactive/">Closed</a></li>
                 </ul>
                </li>
+              {% if request.user|has_group:"admin" %}
+              <li class="nav-item dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i><span>Applications</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="/activeApp/">Active</a></li>
+                  <li><a class="nav-link" href="/notactiveApp/">Closed</a></li>
+                </ul>
+               </li>
+              {% endif %}
             </ul>
         </aside>
       </div>
 {% block page_content %}{% endblock %}
      <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2021
+          Copyright &copy; 2022
         </div>
         <div class="footer-right">
           ---

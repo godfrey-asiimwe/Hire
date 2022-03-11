@@ -14,5 +14,8 @@ urlpatterns = [
     path('apply/<int:id>', views.JobApplications),
     path('applied/',views.JobAppliedFor),
     path('active/',views.activeJobs),
-    path('notactive/',views.expiredJobs)
+    path('notactive/',views.expiredJobs),
+    path('activeApp/',views.activeApps),
+    path('notactiveApp/',views.expiredApps),
+    path('viewApplicants/<int:id>', views.showApplicants, name='viewApplicants'),
 ]

@@ -6,7 +6,7 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Active Jobs</h1>
+            <h1>Applications</h1>
           </div>
           <div class="row">
                 <!-- DataTales Example -->
@@ -27,7 +27,7 @@
                                     <th>Desc</th>
                                     <th>requirements</th>
                                     <th>Deadline</th>
-                                   <th>Apply</th>
+                                   <th>Status</th>
                                 </tr>
                             </thead>
 
@@ -40,7 +40,7 @@
                                          <td>{{job.description}}</td>
                                         <td>{{job.requirements}}</td>
                                         <td>{{job.deadline}}</td>
-                                        <td><a href="/apply/{{job.id}}" class="button">Apply</a></td>
+                                        <td><a href="/viewApplicants/{{job.id}}">View Applicants</a></td>
                                     </tr>
                                 {% endfor %}
                               </tbody>
