@@ -2,7 +2,7 @@ from django.contrib import admin
 # Register your models here.
 # Register your models here.
 
-from .models import JobType, Job, salaryScale, YearOfExp, EducationLevel
+from .models import JobType, Job, salaryScale, YearOfExp, EducationLevel,UserProfile
 
 
 class jobType(admin.ModelAdmin):
