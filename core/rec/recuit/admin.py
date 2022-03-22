@@ -32,8 +32,13 @@ class job(admin.ModelAdmin):
     search_fields = ['name']
 
 
+class userProfile(admin.ModelAdmin):
+    list_display = ('user', 'name','phone','country','city')
+
+
 admin.site.register(JobType, jobType)
 admin.site.register(Job, job)
 admin.site.register(salaryScale, salaryscale)
 admin.site.register(YearOfExp, Yearofexp)
-admin.site.register(EducationLevel,educationLevel)
+admin.site.register(EducationLevel, educationLevel)
+admin.site.register(UserProfile, userProfile)
