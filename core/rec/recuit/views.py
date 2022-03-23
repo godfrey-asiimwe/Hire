@@ -100,7 +100,7 @@ def register_request(request):
             profile.user = user
             profile.save()
             login(request, user)
-            return redirect('/dashboard')
+            return redirect('/profile/'+str(request.user.id))
         else:
             messages.error(request,
                            form.errors)
