@@ -23,9 +23,7 @@ from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserPr
 
 
 def Dashboard(request):
-    applications = Applications.objects.all().count()
-
-    return render(request, 'Dashboard.html')
+    return render(request, 'landingPage.html')
 
 
 def Dashboard2(request):
@@ -104,7 +102,6 @@ def register_request(request):
             login(request, user)
             return redirect('/dashboard')
         else:
-            print(form.errors)
             messages.error(request,
                            form.errors)
     form = NewUserForm
@@ -121,7 +118,7 @@ def log_success(request):
 
 def logout_request(request):
     logout(request)
-    return redirect("login")
+    return redirect("/login")
 
 
 def login_request(request):
@@ -174,6 +171,10 @@ def JobApplications(request, id):
     application.user = request.user
     application.job = job
 
+    userProfile = UserProfile.objects.get(user=request.user)
+
+
+
     application.save()
 
     return redirect("/dashboard")
@@ -225,8 +226,7 @@ def showApplicants(request, id):
 
     userprofile = []
     for applicant in applications:
-
         userprofile += UserProfile.objects.filter(user=applicant.user)
 
-    context = {'applications': applications,'job':job,'userprofile': userprofile}
+    context = {'applications': applications, 'job': job, 'userprofile': userprofile}
     return render(request, 'viewApplicants.html', context)

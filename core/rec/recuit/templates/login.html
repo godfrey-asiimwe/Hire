@@ -1,101 +1,69 @@
-{% load static %}
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Online &mdash; Recruitment System</title>
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href=""/>
 
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>Log in - Coseke</title>
 
-    <!-- Template CSS -->
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/components.css' %}"  />
-</head>
+    <link href="//cloud.webtype.com/css/16e69f38-4c06-440c-92c2-408236a15160.css" rel="stylesheet" type="text/css" />
 
-<body>
-  <div id="app">
-    <section class="section">
-      <div class="d-flex flex-wrap align-items-stretch">
-        <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
-          <div class="p-4 m-3">
-            <img src="../static/img/logo.png" alt="logo" width="100" class="shadow-light rounded-circle mb-5 mt-2">
-            <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold;color:#173f4c !important;">Online Recruitment System </span></h4><br>
-            <p class="text-muted">Before you get started, you must login to your account or Register.</p>
-            <div class="container">
-                <form method="POST">
-                {% csrf_token %}
-                  <div class="form-group col-12">
-                        <label>User Name</label>
-                       <input  type="text" class="form-control" id="id_username" name="username" autofocus >
-                  </div>
-                  <div class="form-group col-12">
-                        <label>Password</label>
-                       <input  type="password" class="form-control" id="id_password" name="password" autofocus >
-                  </div>
-                    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Log in</button>
-                </form>
-            </div>
+    <link rel="stylesheet" media="screen" href="https://d1dkupr86d302v.cloudfront.net/assets/marketingv4-246b4622f341409cb39d366423823c1230ac5da69576746111718bec19f3736e.css" />
 
-            <div class="text-center mt-5 text-small">
 
-            </div>
-          </div>
+    <meta name="description" content="Log in to coseke Job Portal.">
+
+  </head>
+
+  <body class="sans-serif lh-copy bg-washed-brown bg-bottom" style="background-image: url('https://d1dkupr86d302v.cloudfront.net/assets/marketingv4/signup-bg-7f2e8cbb157b38c2ea0c2dc5a96e9d52f0e4bf848b966f3f4c8c8f6dd94184e8.png'); background-size: 800px 260px; background-position: bottom right; background-attachment: fixed;">
+
+
+<div class="mw3 center ph0 ph4-ns" style="margin-top:200px !important;">
+  <div class="bg-white br2 shadow-1 ma3 ma4-ns">
+    <div class="dn db-ns cf pa3 pt4-ns ph4-ns">
+      <div class="fl w-50">
         </div>
-        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative " >
-          <h3 style="padding-top:100px;"  class="text-dark text-center font-weight-normal">
-           Start Transforming
-          </h3>
-          <p class="lead text-center">
-            Today’s job posting needs to be quick, easy and effective.
-          </p>
-          <div class="text-left mt-5" style="padding:50px !important;">
-             <p style="line-height: 58px; text-align: center;"><span style="color: rgb(0, 0, 0);"><span style="font-weight: 400; font-family: Montserrat; font-size: 44px; font-style: normal;"></span></span></p>
-
-
-              <a href="#" class="btn btn-primary" style="font-size:18px !important;" >Land a dream Job</a><br><br>
-
-              <p class="lead">
-                ORMS is an advanced recruitment software enabling human resources departments and
-                recruitment agencies to source and hire in the most effective way.
-              </p>
-              <p  class="lead">
-                ORMS is a sophisticated, easy to use, mobile-friendly and cloud-based applicant tracking system that helps companies achieve digitalization and seamless integration to LinkedIn or jobs boards. The team at Manatal is very supportive, helpful,
-                prompt in their replies and we were pleased to see that the support they offer exceeded our expectations.
-              </p>
-              <div class="mt-4">
-                  <a href="register" class="link-icon">
-                      Register <i class="fas fa-chevron-right"></i>
-                  </a>
-              </div>
-          </div>
+        <div class="fl w-50 tr">
+          <a href="/" class="tr">Go to Homepage</a>
         </div>
       </div>
-    </section>
+      <h1 class="f4 f3-ns lh-title bb b--black-10 ph3 ph4-ns pb3 ma0 pv3">Log in to Job Portal</h1>
+      <div class="pa3 pa4-ns">
+        <form class="new_user"  accept-charset="UTF-8" method="post">
+        {% csrf_token %}
+          <fieldset id="log_in" class="bn pa0 mh0">
+
+            <div>
+              <label class="db lh-copy f6" for="id_username">User Name</label>
+              <input class="pa2 input-reset ba b--black-30 bg-white dark-gray br2 w-100" autofocus="autofocus" type="text" id="id_username" name="username" />
+            </div>
+
+            <div class="mt3">
+              <label class="db lh-copy f6" for="id_password">Password</label>
+              <input class="pa2 input-reset ba b--black-30 bg-white dark-gray br2 w-100" type="password" id="id_password" name="password" />
+            </div>
+          </fieldset>
+
+          <div class="mt3 pt2-ns">
+            <input class="aa f5 b ph3 pv2 input-reset bn bg-green white br2 pointer w-100" type="submit" value="Log In">
+          </div>
+
+          <p class="mt3 mb2 tc">
+            <a href="/admin/">Login as Staff</a>
+          </p>
+          <p class="mt2 mb0 tc">
+            <a href="">Resend confirmation email</a>
+          </p>
+</form>      </div>
+    </div>
   </div>
+</div>
 
-  <!-- General JS Scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="../static/js/stisla.js" type="text/javascript"></script>
-  <!-- Template JS File -->
+<script src="https://d1dkupr86d302v.cloudfront.net/assets/marketingv4-702f3d4f90eb0bdb1f01a0a5bb78410b3d3a1eb973a2dd99568d73d891e97e5f.js"></script>
 
-  <script src="../static/js/scripts.js" type="text/javascript"></script>
-  <script src="../static/js/custom.js" type="text/javascript"></script>
-
-  <!-- Page Specific JS File -->
-  <script src="../static/js/page/index-0.js" type="text/javascript"></script>
-
-  <script src="../static/js/vendor/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-  <script src="../static/js/vendor/datatables/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-  <!-- Page level custom scripts -->
-  <script src="../static/js/demo/datatables-demo.js" type="text/javascript"></script>
-
-  <!-- Page Specific JS File -->
-</body>
+  </body>
 </html>
+
+

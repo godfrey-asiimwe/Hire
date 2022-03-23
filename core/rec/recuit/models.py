@@ -86,13 +86,13 @@ class UserProfile(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE)
     jobType = models.ForeignKey(
-        JobType, on_delete=models.CASCADE)
+        JobType, on_delete=models.CASCADE,null=True)
     yearOfExp = models.ForeignKey(
-        YearOfExp, on_delete=models.CASCADE)
+        YearOfExp, on_delete=models.CASCADE,null=True)
     salaryScale = models.ForeignKey(
-        salaryScale, on_delete=models.CASCADE)
+        salaryScale, on_delete=models.CASCADE,null=True)
     educationLevel = models.ForeignKey(
-        EducationLevel, on_delete=models.CASCADE)
+        EducationLevel, on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     country = models.CharField(max_length=100)
