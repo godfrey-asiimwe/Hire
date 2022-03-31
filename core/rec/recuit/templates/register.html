@@ -1,0 +1,95 @@
+{% load user_tags %}
+{% load crispy_forms_tags %}
+
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href=""/>
+
+    <title>Log in - Coseke</title>
+
+    <link href="//cloud.webtype.com/css/16e69f38-4c06-440c-92c2-408236a15160.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" media="screen" href="https://d1dkupr86d302v.cloudfront.net/assets/marketingv4-246b4622f341409cb39d366423823c1230ac5da69576746111718bec19f3736e.css" />
+
+
+    <meta name="description" content="Log in to coseke Job Portal.">
+
+  </head>
+
+  <body class="sans-serif lh-copy bg-washed-brown bg-bottom" style="background-image: url('https://d1dkupr86d302v.cloudfront.net/assets/marketingv4/signup-bg-7f2e8cbb157b38c2ea0c2dc5a96e9d52f0e4bf848b966f3f4c8c8f6dd94184e8.png'); background-size: 800px 260px; background-position: bottom right; background-attachment: fixed;">
+
+
+<div class="mw3 center ph0 ph4-ns" style="margin-top:200px !important;">
+  <div class="bg-white br2 shadow-1 ma3 ma4-ns">
+    <div class="dn db-ns cf pa3 pt4-ns ph4-ns">
+      <div class="fl w-50">
+        </div>
+        <div class="fl w-50 tr">
+          <a href="/" class="tr">Go to Homepage</a>
+        </div>
+      </div>
+      <h1 class="f4 f3-ns lh-title bb b--black-10 ph3 ph4-ns pb3 ma0 pv3">Register </h1>
+      <div class="pa3 pa4-ns">
+        <form class="new_user"  accept-charset="UTF-8" method="post">
+        {% csrf_token %}
+
+          <a class="messages ">
+            {% for message in messages %}
+            <a  {% if message.tags %} class=" {{ message.tags }} btn btn-danger" style="color:Green !important;" {% endif %}> {{ message }} </a>
+            {% endfor %}
+          </a><br><br>
+          <fieldset id="log_in" class="bn pa0 mh0">
+
+            <div>
+              <label class="db lh-copy f6" for="username">User Name</label>
+              <input class="pa2 input-reset ba b--black-30 bg-white dark-gray br2 w-100" autofocus="autofocus" type="text" id="username" name="username" />
+            </div>
+
+            <div>
+              <label class="db lh-copy f6" for="first_name">First Name</label>
+              <input class="pa2 input-reset ba b--black-30 bg-white dark-gray br2 w-100" autofocus="autofocus" type="text" id="first_name" name="first_name" />
+            </div>
+
+            <div>
+              <label class="db lh-copy f6" >Last Name</label>
+              <input class="pa2 input-reset ba b--black-30 bg-white dark-gray br2 w-100" autofocus="autofocus" type="text" id="last_name" name="last_name" />
+            </div>
+
+             <div>
+              <label class="db lh-copy f6" >Email Address</label>
+              <input class="pa2 input-reset ba b--black-30 bg-white dark-gray br2 w-100" autofocus="autofocus" type="text" id="email" name="email" />
+            </div>
+
+            <div class="mt3">
+              <label class="db lh-copy f6" for="password1">Password</label>
+              <input class="pa2 input-reset ba b--black-30 bg-white dark-gray br2 w-100" type="password" id="password1" name="password1" />
+            </div>
+
+            <div class="mt3">
+              <label class="db lh-copy f6" for="password2">Confirm Password</label>
+              <input class="pa2 input-reset ba b--black-30 bg-white dark-gray br2 w-100" type="password" id="password2" name="password2" />
+            </div>
+
+
+          </fieldset>
+
+          <div class="mt3 pt2-ns">
+            <input class="aa f5 b ph3 pv2 input-reset bn bg-green white br2 pointer w-100" type="submit" value="Register">
+          </div>
+
+          <p class="mt2 mb0 tc">
+            <a href="">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://d1dkupr86d302v.cloudfront.net/assets/marketingv4-702f3d4f90eb0bdb1f01a0a5bb78410b3d3a1eb973a2dd99568d73d891e97e5f.js"></script>
+</body>
+</html>
+
+

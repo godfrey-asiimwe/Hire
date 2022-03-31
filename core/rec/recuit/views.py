@@ -105,7 +105,7 @@ def register_request(request):
             messages.error(request,
                            form.errors)
     form = NewUserForm
-    return render(request, 'signup.html', context={"register_form": form})
+    return render(request, 'register.html', context={"register_form": form})
 
 
 def reg_success(request):
