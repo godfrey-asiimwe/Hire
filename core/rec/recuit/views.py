@@ -23,7 +23,11 @@ from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserPr
 
 
 def Dashboard(request):
-    return render(request, 'landingPage.html')
+    today = datetime.datetime.today()
+    jobs = Job.objects.all().filter(deadline__gt=today)
+
+    context = {'jobs': jobs}
+    return render(request, 'landingPage.html',context)
 
 
 def Dashboard2(request):
