@@ -36,9 +36,9 @@
                                     <tr>
                                         <td>{{application.job.jobType}}</td>
                                         <td>{{application.job.name}}</td>
-                                        <td>{{application.job.activities}}</td>
-                                         <td>{{application.job.description}}</td>
-                                        <td>{{application.job.requirements}}</td>
+                                        <td>{{application.job.activities|safe}}</td>
+                                         <td>{{application.job.description|safe}}</td>
+                                        <td>{{application.job.requirements|safe}}</td>
                                         <td>{{application.job.deadline}}</td>
                                         <td>{{application.job.status}}</td>
                                     </tr>

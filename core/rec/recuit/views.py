@@ -25,11 +25,12 @@ from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserPr
 
 def Dashboard(request):
     today = datetime.datetime.today()
-    jobs = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=True,deadline__gt=today)
-    job2s = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=False,deadline__gt=today)
+    jobs = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=True, deadline__gt=today).order_by("created_on")
+    job2s = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=False, deadline__gt=today).order_by("created_on")
 
-    context = {'jobs': jobs, 'job2s':job2s}
-    return render(request, 'landingPage.html',context)
+    context = {'jobs': jobs, 'job2s': job2s}
+    return render(request, 'landingPage.html', context)
+
 
 def Dashboard2(request):
     today = datetime.datetime.today()
@@ -105,7 +106,7 @@ def register_request(request):
             profile.user = user
             profile.save()
             login(request, user)
-            return redirect('/profile/'+str(request.user.id))
+            return redirect('/profile/' + str(request.user.id))
         else:
             messages.error(request,
                            form.errors)
@@ -149,7 +150,6 @@ def login_request(request):
 def Profile(request, id):
     userProfile = UserProfile.objects.get(user=request.user)
 
-    print(request.user)
     years = YearOfExp.objects.all().order_by("-created")
     salaryScales = salaryScale.objects.all().order_by("-created")
     EducationLevels = EducationLevel.objects.all().order_by("-created")
@@ -162,11 +162,14 @@ def Profile(request, id):
 
 def updateProfile(request, id):
     userProfile = UserProfile.objects.get(user=request.user)
-    form = UserProfileForm(request.POST, instance=userProfile)
-    if form.is_valid():
-        form.save()
+    form = UserProfileForm(request.POST,request.FILES,instance=userProfile)
 
+    if form.is_valid():
+        print("we are here")
+        form.save()
         return redirect("/profile/" + str(request.user.id))
+    else:
+        messages.error(request,form.errors)
     return render(request, 'profile.html', {'userProfile': userProfile})
 
 
@@ -177,8 +180,6 @@ def JobApplications(request, id):
     application.job = job
 
     userProfile = UserProfile.objects.get(user=request.user)
-
-
 
     application.save()
 
@@ -237,10 +238,8 @@ def showApplicants(request, id):
     return render(request, 'viewApplicants.html', context)
 
 
-def JobDetail(request,id):
+def JobDetail(request, id):
     job = Job.objects.get(id=id)
 
     context = {'job': job}
     return render(request, 'JobDetail.html', context)
-
-

@@ -99,6 +99,7 @@ class UserProfile(models.Model):
     phone = models.CharField(max_length=50)
     country = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
+    upload = models.FileField(upload_to='')
     created_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
 

@@ -74,6 +74,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'rec.wsgi.application'
 
+BLEACH_ALLOWED_TAGS = ['p', 'b', 'i', 'u', 'em', 'strong', 'a']
+BLEACH_ALLOWED_ATTRIBUTES = ['href', 'title', 'style']
+BLEACH_STRIP_TAGS = True
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

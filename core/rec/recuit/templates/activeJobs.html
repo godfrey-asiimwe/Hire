@@ -36,9 +36,9 @@
                                     <tr>
                                         <td>{{job.jobType}}</td>
                                         <td>{{job.name}}</td>
-                                        <td>{{job.activities}}</td>
-                                         <td>{{job.description}}</td>
-                                        <td>{{job.requirements}}</td>
+                                        <td>{{job.activities|safe}}</td>
+                                         <td>{{job.description|safe}}</td>
+                                        <td>{{job.requirements|safe}}</td>
                                         <td>{{job.deadline}}</td>
                                         <td><a href="/apply/{{job.id}}" class="button">Apply</a></td>
                                     </tr>

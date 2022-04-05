@@ -21,7 +21,7 @@
                             {% endfor %}
                       </div>
                       <div class="card-body mt-5">
-                             <form action="/updateprofile/{{request.user.id}}" method = "post" class="">
+                             <form action="/updateprofile/{{request.user.id}}" method = "post" class="" enctype="multipart/form-data">
                                     {% csrf_token %}
                                    <div class="row">
                                         <div class="form-group col-4">
@@ -45,7 +45,7 @@
                                          <div class="form-group col-4">
                                              <label>Years of Experience</label>
                                               <select id="yearOfExp" name="yearOfExp" class="form-control" >
-                                               <option value="{{ useraProfile.yearOfExp.id }}">{{ userProfile.yearOfExp.name }}</option>
+                                               <option value="{{ userProfile.yearOfExp.id }}">{{ userProfile.yearOfExp.name }}</option>
                                                {% for YearOfExp in years %}
                                                 <option value="{{ YearOfExp.id }}">{{ YearOfExp.name }}</option>
                                                 {% endfor %}
@@ -54,7 +54,7 @@
                                          <div class="form-group col-4">
                                              <label>Salary Scale</label>
                                               <select id="salaryScale" name="salaryScale" class="form-control" >
-                                               <option value="{{ useraProfile.salaryScale.id }}">{{ userProfile.salaryScale.name }}</option>
+                                               <option value="{{ userProfile.salaryScale.id }}">{{ userProfile.salaryScale.name }}</option>
                                                {% for salaryScale in salaryScales %}
                                                 <option value="{{ salaryScale.id }}">{{ salaryScale.name }}</option>
                                                 {% endfor %}
@@ -63,7 +63,7 @@
                                           <div class="form-group col-4">
                                               <label>Education Level</label>
                                               <select id="educationLevel" name="educationLevel" class="form-control" >
-                                              <option value="{{ useraProfile.educationLevel.id }}">{{ userProfile.educationLevel.name }}</option>
+                                              <option value="{{ userProfile.educationLevel.id }}">{{ userProfile.educationLevel.name }}</option>
                                                {% for EducationLevel in EducationLevels %}
                                                 <option value="{{ EducationLevel.id }}">{{ EducationLevel.name }}</option>
                                                {% endfor %}
@@ -72,11 +72,18 @@
                                           <div class="form-group col-4">
                                               <label>Profession</label>
                                               <select id="jobType" name="jobType" class="form-control" >
-                                               <option value="{{ useraProfile.jobType.id }}">{{ userProfile.jobType.name }}</option>
+                                               <option value="{{ userProfile.jobType.id }}">{{ userProfile.jobType.name }}</option>
                                                {% for JobType in JobTypes %}
                                                 <option value="{{ JobType.id }}">{{ JobType.name }}</option>
                                                {% endfor %}
                                               </select>
+                                          </div>
+                                          <div class="form-group col-4">
+                                              <a href="{{userProfile.upload.url}}" ><i class="far fa-file "></i> CV</a><br>
+
+                                              <br>
+                                              <input type="file" name="upload" id="upload" class="form-control" >
+
                                           </div>
                                     </div>
 

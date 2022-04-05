@@ -23,4 +23,4 @@ class NewUserForm(UserCreationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ["name","country", "city","phone","yearOfExp","salaryScale","educationLevel","jobType"]
+        fields = ["name","country", "city","phone","yearOfExp","salaryScale","educationLevel","jobType","upload",]
