@@ -1,3 +1,5 @@
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib import admin
 from django.db import models
 
 # Create your models here.
@@ -5,9 +7,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
-
 # Create your models here.
-
+from django.forms.widgets import Textarea
 
 class JobType(models.Model):
     name = models.CharField(max_length=50)
@@ -22,12 +23,13 @@ class JobType(models.Model):
 
 
 class Job(models.Model):
+
     jobType = models.ForeignKey(
         JobType, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=100)
-    activities = models.CharField(max_length=50)
-    requirements = models.CharField(max_length=50)
+    description = RichTextUploadingField()
+    activities = RichTextUploadingField()
+    requirements = RichTextUploadingField()
     deadline = models.DateField()
     Active_Status = 1
     Inactive_Status = 0
@@ -86,13 +88,13 @@ class UserProfile(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE)
     jobType = models.ForeignKey(
-        JobType, on_delete=models.CASCADE,null=True)
+        JobType, on_delete=models.CASCADE, null=True)
     yearOfExp = models.ForeignKey(
-        YearOfExp, on_delete=models.CASCADE,null=True)
+        YearOfExp, on_delete=models.CASCADE, null=True)
     salaryScale = models.ForeignKey(
-        salaryScale, on_delete=models.CASCADE,null=True)
+        salaryScale, on_delete=models.CASCADE, null=True)
     educationLevel = models.ForeignKey(
-        EducationLevel, on_delete=models.CASCADE,null=True)
+        EducationLevel, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     country = models.CharField(max_length=100)

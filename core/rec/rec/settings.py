@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django.contrib.humanize',
     'recuit',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -100,6 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+CKEDITOR_UPLOAD_PATH="uploads/"
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -115,7 +120,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-
+CKEDITOR_UPLOAD_PATH = "uploads/"
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

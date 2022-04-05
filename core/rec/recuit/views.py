@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 import uuid
 from calendar import calendar
@@ -7,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from django.db.models import Q
+from django.db.models import Q, F
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 
@@ -24,11 +25,11 @@ from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserPr
 
 def Dashboard(request):
     today = datetime.datetime.today()
-    jobs = Job.objects.all().filter(deadline__gt=today)
+    jobs = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=True,deadline__gt=today)
+    job2s = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=False,deadline__gt=today)
 
-    context = {'jobs': jobs}
+    context = {'jobs': jobs, 'job2s':job2s}
     return render(request, 'landingPage.html',context)
-
 
 def Dashboard2(request):
     today = datetime.datetime.today()
@@ -122,7 +123,7 @@ def log_success(request):
 
 def logout_request(request):
     logout(request)
-    return redirect("/login")
+    return redirect("/")
 
 
 def login_request(request):
@@ -234,3 +235,12 @@ def showApplicants(request, id):
 
     context = {'applications': applications, 'job': job, 'userprofile': userprofile}
     return render(request, 'viewApplicants.html', context)
+
+
+def JobDetail(request,id):
+    job = Job.objects.get(id=id)
+
+    context = {'job': job}
+    return render(request, 'JobDetail.html', context)
+
+

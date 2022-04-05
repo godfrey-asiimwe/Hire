@@ -19,4 +19,5 @@ urlpatterns = [
     path('activeApp/',views.activeApps),
     path('notactiveApp/',views.expiredApps),
     path('viewApplicants/<int:id>', views.showApplicants, name='viewApplicants'),
+    path('detail/<int:id>', views.JobDetail),
 ]

@@ -91,8 +91,8 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2
 		</div><!-- .site-branding -->
 
 		<div class="loginandsignup">
-		<a href="" class="get-a-demo f-sixteen">Register</a>
-		<a href="" class="login f-sixteen">Login</a>
+		<a href="/register" class="get-a-demo f-sixteen">Register</a>
+		<a href="/login" class="login f-sixteen">Login</a>
 		</div><!-- .loginandsignup -->
 			</div>
 	</header><!-- #masthead -->
@@ -110,24 +110,23 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2
                            <!-- <p>
                                 <img loading="lazy" class="alignnone wp-image-12088 size-full" role="img" src="https://wpblog.semaphoreci.com/wp-content/uploads/2019/11/tabs-ci-cd-icon.svg" alt="tabs icon ci/cd" width="53.014" height="51.316">
                             </p>-->
+                            <br><br>
                         <h2>HR System</h2>
                         <p>
-                            No more tool bloat. With fine-tuned environments for every technology stack,
-                            Semaphore helps you build, test and deploy apps across teams without overhead.
+                            A centralized database for employees to transfer all information onto the cloud-based platform,
+                            which HR can verify and approve using the authorized access controls.
                         </p>
                         </div>
-
-
 
 <div class="column-one">
 <ul class="tab-nav slick-initialized slick-slider slick-vertical">
     <div class="slick-list draggable" style="height: 1000px;">
-
         <div class="slick-track" style="opacity: 1; height: 400px; transform: translate3d(0px, 0px, 0px);">
         {% for job in jobs %}
             <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 449px;">
                 <div>
                     <li style="width: 100%; display: inline-block;">
+                        <a href="/detail/{{job.id}}" style="text-decoration:none !important;">
                         <div class="inner">
                             <div class="image image-hover">
                             <img width="36" height="36" src="https://wpblog.semaphoreci.com/wp-content/uploads/2019/11/linux-hover.svg" class="attachment-full size-full wp-image-12100" alt="linux hover" loading="lazy">
@@ -135,10 +134,40 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2
                                   {{job.id}}
                               </div>
                             </div>
-                            <div class="title">{{job.name}}<div class="underline" style="background-color:#f16332"></div></div>
+                            <div class="title">{{job.name}}</div>
 
                         </div>
+                        </a>
+                    </li>
 
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</ul>
+</div>
+<div class="column-one">
+<ul class="tab-nav slick-initialized slick-slider slick-vertical">
+    <div class="slick-list draggable" style="height: 1000px;">
+        <div class="slick-track" style="opacity: 1; height: 400px; transform: translate3d(0px, 0px, 0px);">
+        {% for job in job2s %}
+            <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 449px;">
+                <div>
+                    <li style="width: 100%; display: inline-block;">
+                        <a href="/detail/{{job.id}}" style="text-decoration:none !important;">
+                        <div class="inner">
+                            <div class="image image-hover">
+                            <img width="36" height="36" src="https://wpblog.semaphoreci.com/wp-content/uploads/2019/11/linux-hover.svg" class="attachment-full size-full wp-image-12100" alt="linux hover" loading="lazy">
+                              <div class="imagehover">
+                                  {{job.id}}
+                              </div>
+                            </div>
+                            <div class="title">{{job.name}}</div>
+
+                        </div>
+                        </a>
                     </li>
 
                 </div>
