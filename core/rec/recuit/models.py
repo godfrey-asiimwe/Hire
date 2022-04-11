@@ -10,6 +10,7 @@ from django.db import models
 # Create your models here.
 from django.forms.widgets import Textarea
 
+
 class JobType(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -17,32 +18,6 @@ class JobType(models.Model):
 
     class Meta:
         ordering = ['-created']
-
-    def __str__(self):
-        return self.name
-
-
-class Job(models.Model):
-
-    jobType = models.ForeignKey(
-        JobType, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    description = RichTextUploadingField()
-    activities = RichTextUploadingField()
-    requirements = RichTextUploadingField()
-    deadline = models.DateField()
-    Active_Status = 1
-    Inactive_Status = 0
-    STATUS_CHOICES = (
-        (Active_Status, 'active'),
-        (Inactive_Status, 'unactive'),
-    )
-    status = models.IntegerField(choices=STATUS_CHOICES, default=Inactive_Status)
-    created_on = models.DateTimeField(auto_now=True)
-    updated_on = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -100,6 +75,37 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     upload = models.FileField(upload_to='')
+    created_on = models.DateTimeField(auto_now=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+class Job(models.Model):
+    jobType = models.ForeignKey(
+        JobType, on_delete=models.CASCADE)
+    yearOfExp = models.ForeignKey(
+        YearOfExp, on_delete=models.CASCADE, null=True)
+    salaryScale = models.ForeignKey(
+        salaryScale, on_delete=models.CASCADE, null=True)
+    educationLevel = models.ForeignKey(
+        EducationLevel, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=50)
+    description = RichTextUploadingField()
+    activities = RichTextUploadingField()
+    requirements = RichTextUploadingField()
+    deadline = models.DateField()
+    Active_Status = 1
+    Inactive_Status = 0
+    STATUS_CHOICES = (
+        (Active_Status, 'active'),
+        (Inactive_Status, 'unactive'),
+    )
+    status = models.IntegerField(choices=STATUS_CHOICES, default=Inactive_Status)
     created_on = models.DateTimeField(auto_now=True)
     updated_on = models.DateTimeField(auto_now=True)
 

@@ -258,7 +258,7 @@ def showApplicants(request, id):
 
     userprofile = []
     for applicant in applications:
-        userprofile += UserProfile.objects.filter(user=applicant.user)
+        userprofile += UserProfile.objects.filter(user=applicant.user).order_by("yearOfExp")
 
     context = {'applications': applications, 'job': job, 'userprofile': userprofile}
     return render(request, 'viewApplicants.html', context)
@@ -271,7 +271,7 @@ def showSortedApplicants(request, id):
 
     userprofile = []
     for applicant in applications:
-        userprofile += UserProfile.objects.filter(user=applicant.user, jobType=job.jobType)
+        userprofile += UserProfile.objects.filter(user=applicant.user, jobType=job.jobType).order_by("-educationLevel")
 
     context = {'applications': applications, 'job': job, 'userprofile': userprofile}
     return render(request, 'SortedList.html', context)
