@@ -14,6 +14,9 @@
                     <div class="card">
                       <div class="card-header">
                         <h4>{{job.name}} ---- applications</h4>
+                       <div class="card-header-action">
+                        <a href="/sortedList/{{job.id}}" class="btn btn-warning">View Sortlisted <i class="fas fa-chevron-right"></i></a>
+                      </div>
                       </div>
                       <div class="card-body p-0">
                         <div class="table-responsive" style="padding: 20px !important;">
@@ -21,23 +24,25 @@
 
                                <thead>
                                <tr>
+                                    <th>Name</th>
                                     <th>Proffession</th>
                                     <th>Years of experience</th>
                                     <th>Salary Scale</th>
                                     <th>Education Level</th>
-                                    <th>Name</th>
                                     <th>Phone</th>
+                                    <th>CV</th>
                                </tr>
                             </thead>
                               <tbody>
                                 {% for profile in userprofile %}
                                     <tr>
+                                        <td>{{profile.name}}</td>
                                         <td>{{profile.jobType}}</td>
                                         <td>{{profile.yearOfExp}}</td>
                                         <td>{{profile.salaryScale}}</td>
                                         <td>{{profile.educationLevel}}</td>
-                                        <td>{{profile.name}}</td>
                                         <td>{{profile.phone}}</td>
+                                        <td><a href="{{profile.upload.url}}">{{profile.upload}}</a></td>
                                     </tr>
                                 {% endfor %}
                               </tbody>

@@ -162,14 +162,13 @@ def Profile(request, id):
 
 def updateProfile(request, id):
     userProfile = UserProfile.objects.get(user=request.user)
-    form = UserProfileForm(request.POST,request.FILES,instance=userProfile)
+    form = UserProfileForm(request.POST, request.FILES, instance=userProfile)
 
     if form.is_valid():
-        print("we are here")
         form.save()
         return redirect("/profile/" + str(request.user.id))
     else:
-        messages.error(request,form.errors)
+        messages.error(request, form.errors)
     return render(request, 'profile.html', {'userProfile': userProfile})
 
 
@@ -181,7 +180,34 @@ def JobApplications(request, id):
 
     userProfile = UserProfile.objects.get(user=request.user)
 
-    application.save()
+    if userProfile.jobType is None:
+        # application.save()
+        messages.error(request, "Update your Profile and apply again")
+        return redirect("/profile/" + str(request.user.id))
+    else:
+        if userProfile.name is None:
+            messages.error(request, "Update your Profile and apply again")
+            return redirect("/profile/" + str(request.user.id))
+        else:
+            if userProfile.educationLevel is None:
+                messages.error(request, "Update your Profile and apply again")
+                return redirect("/profile/" + str(request.user.id))
+            else:
+                if userProfile.salaryScale is None:
+                    messages.error(request, "Update your Profile and apply again")
+                    return redirect("/profile/" + str(request.user.id))
+                else:
+                    if userProfile.yearOfExp is None:
+                        messages.error(request, "Update your Profile and apply again")
+                        return redirect("/profile/" + str(request.user.id))
+                    else:
+                        if userProfile.upload is None:
+                            messages.error(request, "Update your Profile and apply again")
+                            return redirect("/profile/" + str(request.user.id))
+                        else:
+                            application.save()
+                            messages.success(request, "You have seccessfully Apllied for the Job, wait for feedback")
+                            return redirect("/applied")
 
     return redirect("/dashboard")
 
@@ -236,6 +262,19 @@ def showApplicants(request, id):
 
     context = {'applications': applications, 'job': job, 'userprofile': userprofile}
     return render(request, 'viewApplicants.html', context)
+
+
+def showSortedApplicants(request, id):
+    applications = Applications.objects.filter(job=id)
+
+    job = Job.objects.get(id=id)
+
+    userprofile = []
+    for applicant in applications:
+        userprofile += UserProfile.objects.filter(user=applicant.user, jobType=job.jobType)
+
+    context = {'applications': applications, 'job': job, 'userprofile': userprofile}
+    return render(request, 'SortedList.html', context)
 
 
 def JobDetail(request, id):
