@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.forms import models
 from django.forms.widgets import Textarea
 
-from .models import JobType, Job, salaryScale, YearOfExp, EducationLevel, UserProfile
+from .models import JobType, Job, salaryScale, YearOfExp, EducationLevel, UserProfile, MyModel
 
 
 class jobType(admin.ModelAdmin):
@@ -38,6 +38,11 @@ class userProfile(admin.ModelAdmin):
     list_display = ('user', 'name', 'phone', 'country', 'city')
 
 
+class myModel(admin.ModelAdmin):
+    list_display = ()
+
+
+admin.site.register(MyModel, myModel)
 admin.site.register(JobType, jobType)
 admin.site.register(Job, job)
 admin.site.register(salaryScale, salaryscale)

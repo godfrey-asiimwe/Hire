@@ -9,6 +9,11 @@ from django.db import models
 
 # Create your models here.
 from django.forms.widgets import Textarea
+from river.models.fields.state import StateField
+
+
+class MyModel(models.Model):
+    my_state_field = StateField()
 
 
 class JobType(models.Model):

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'recuit',
     'ckeditor',
     'ckeditor_uploader',
+    'codemirror2',
+    'river',
 ]
 
 MIDDLEWARE = [
