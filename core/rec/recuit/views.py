@@ -1,23 +1,11 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-import uuid
-from calendar import calendar
-
-from django.conf import settings
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
-from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from django.db.models import Q, F
 from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
 
 from django.contrib import messages
 import datetime
-import calendar
 from .forms import NewUserForm, UserProfileForm
-
-# import messages
 
 # Create your views here.
 from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserProfile, Applications
@@ -25,8 +13,8 @@ from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserPr
 
 def Dashboard(request):
     today = datetime.datetime.today()
-    jobs = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=True, deadline__gt=today).order_by("created_on")
-    job2s = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=False, deadline__gt=today).order_by("created_on")
+    jobs = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=True, deadline__gt=today).order_by("-id")
+    job2s = Job.objects.all().annotate(odd=F('id') % 2).filter(odd=False, deadline__gt=today).order_by("-id")
 
     context = {'jobs': jobs, 'job2s': job2s}
     return render(request, 'landingPage.html', context)
