@@ -202,7 +202,6 @@ def JobApplications(request, id):
 
 def JobAppliedFor(request):
     applications = Applications.objects.all().filter(user=request.user)
-
     context = {'applications': applications}
     return render(request, 'appliedFor.html', context)
 
@@ -210,7 +209,6 @@ def JobAppliedFor(request):
 def activeJobs(request):
     today = datetime.datetime.today()
     jobs = Job.objects.all().filter(deadline__gt=today)
-
     context = {'jobs': jobs}
     return render(request, 'activeJobs.html', context)
 
@@ -218,7 +216,6 @@ def activeJobs(request):
 def expiredJobs(request):
     today = datetime.datetime.today()
     jobs = Job.objects.all().filter(deadline__lt=today)
-
     context = {'jobs': jobs}
     return render(request, 'activeJobs.html', context)
 

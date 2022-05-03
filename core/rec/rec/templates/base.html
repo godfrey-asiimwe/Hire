@@ -74,6 +74,7 @@
                   <li><a class="nav-link" href="/notactive/">Closed</a></li>
                 </ul>
                </li>
+
               {% if request.user|has_group:"admin" %}
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i><span>Applications</span></a>
@@ -82,7 +83,17 @@
                   <li><a class="nav-link" href="/notactiveApp/">Closed</a></li>
                 </ul>
                </li>
+              {% endif%}
+
+              {% if request.user|has_group:"HOD" %}
+              <li class="nav-item dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i><span>Positions</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="/position/">Position</a></li>
+                </ul>
+               </li>
               {% endif %}
+
             </ul>
         </aside>
       </div>

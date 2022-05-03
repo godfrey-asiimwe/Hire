@@ -4,10 +4,16 @@ from django.contrib import admin
 from django.forms import models
 from django.forms.widgets import Textarea
 
-from .models import JobType, Job, salaryScale, YearOfExp, EducationLevel, UserProfile, MyModel
+from .models import JobType, Job, salaryScale, YearOfExp, EducationLevel, UserProfile, MyModel, JobPosition, \
+    ContractType
 
 
 class jobType(admin.ModelAdmin):
+    list_display = ('name', 'description', 'created')
+    search_fields = ['name']
+
+
+class contractType(admin.ModelAdmin):
     list_display = ('name', 'description', 'created')
     search_fields = ['name']
 
@@ -38,6 +44,12 @@ class userProfile(admin.ModelAdmin):
     list_display = ('user', 'name', 'phone', 'country', 'city')
 
 
+class jobPosition(admin.ModelAdmin):
+    list_display = (
+    'date', 'project', 'requestedBy', 'contractType', 'title', 'quantity', 'startDate', 'endDate', 'GradeStep',
+    'salaryRange', 'proposed', 'description', 'hr', 'cm')
+
+
 class myModel(admin.ModelAdmin):
     list_display = ()
 
@@ -49,3 +61,5 @@ admin.site.register(salaryScale, salaryscale)
 admin.site.register(YearOfExp, Yearofexp)
 admin.site.register(EducationLevel, educationLevel)
 admin.site.register(UserProfile, userProfile)
+admin.site.register(JobPosition, jobPosition)
+admin.site.register(ContractType,contractType)

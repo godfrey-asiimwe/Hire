@@ -16,6 +16,17 @@ class MyModel(models.Model):
     my_state_field = StateField()
 
 
+class ContractType(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return self.name
+
 class JobType(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -91,6 +102,7 @@ class UserProfile(models.Model):
 
 
 class Job(models.Model):
+    my_state_field = StateField()
     jobType = models.ForeignKey(
         JobType, on_delete=models.CASCADE)
     yearOfExp = models.ForeignKey(
@@ -134,3 +146,38 @@ class Applications(models.Model):
 
     def __str__(self):
         return self.job
+
+
+class JobPosition(models.Model):
+    date = models.DateField()
+    project = models.CharField(max_length=50)
+    requestedBy = models.ForeignKey(
+        User, on_delete=models.CASCADE)
+    contractType = models.ForeignKey(
+        ContractType, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=50)
+    quantity = models.IntegerField()
+    startDate = models.DateField()
+    endDate = models.DateField()
+    GradeStep = models.CharField(max_length=50,null=True)
+    salaryRange = models.ForeignKey(
+        salaryScale, on_delete=models.CASCADE, null=True)
+    proposed = models.CharField(max_length=50,null=True)
+    description = RichTextUploadingField()
+    attachment = models.FileField(upload_to='')
+    Active_Status = 1
+    Inactive_Status = 0
+    STATUS_CHOICES = (
+        (Active_Status, 'Approved'),
+        (Inactive_Status, 'Pending'),
+    )
+    hr = models.IntegerField(choices=STATUS_CHOICES, default=Inactive_Status)
+    cm = models.IntegerField(choices=STATUS_CHOICES, default=Inactive_Status)
+    created_on = models.DateTimeField(auto_now=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
