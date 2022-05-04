@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'codemirror2',
     'river',
+    'rest_framework.authtoken',
+    'river_admin',
+    'examples.shipping_example',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +105,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'EXCEPTION_HANDLER': 'river_admin.views.exception_handler'
+}
 
 
 CKEDITOR_UPLOAD_PATH="uploads/"
