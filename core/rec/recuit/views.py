@@ -267,3 +267,9 @@ def JobDetail(request, id):
 
     context = {'job': job}
     return render(request, 'JobDetail.html', context)
+
+
+def CreatePosition(request):
+
+    context = {}
+    return render(request, 'position.html', context)

@@ -12,7 +12,7 @@
                 <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="card">
                       <div class="card-header">
-                        <h4 class="alert alert-success">Your Profile  --- Please update your Profile before applying for a Job</h4>
+                        <h4 class="alert alert-success">Create a position</h4>
                              {% for message in messages %}
                                 <div class="alert alert-success">
                                     <a class="close" href="" data-dismiss="alert">×</a>
@@ -25,72 +25,49 @@
                                     {% csrf_token %}
                                    <div class="row">
                                         <div class="form-group col-4">
-                                            <label>Full Names</label>
-                                            <input  type="text" class="form-control" id="name" name="name" autofocus autofocus value="{{userProfile.name}}" >
+                                            <label>Date</label>
+                                            <input  type="date" class="form-control" id="date" name="date" autofocus  >
                                         </div>
                                         <div class="form-group col-4">
-                                            <label>Country</label>
-                                            <input  type="text" class="form-control" id="country" name="country" autofocus  value="{{userProfile.country}}">
+                                            <label>Project</label>
+                                            <input  type="text" class="form-control" id="project" name="project" autofocus >
                                         </div>
                                         <div class="form-group col-4">
-                                            <label>City</label>
-                                            <input  type="text" class="form-control" id="city" name="city" autofocus value="{{userProfile.city}}">
+                                            <label>Title</label>
+                                            <input  type="text" class="form-control" id="title" name="title" autofocus >
                                         </div>
                                    </div>
                                    <div class="row">
                                         <div class="form-group col-4">
-                                             <label>Phone Number</label>
-                                             <input  type="text" class="form-control" id="phone" name="phone" autofocus value="{{userProfile.phone}}">
+                                             <label>Quantity</label>
+                                             <input  type="text" class="form-control" id="quantity" name="quantity" autofocus >
                                         </div>
-                                         <div class="form-group col-4">
-                                             <label>Years of Experience</label>
-                                              <select id="yearOfExp" name="yearOfExp" class="form-control" >
-                                               <option value="{{ userProfile.yearOfExp.id }}">{{ userProfile.yearOfExp.name }}</option>
-                                               {% for YearOfExp in years %}
-                                                <option value="{{ YearOfExp.id }}">{{ YearOfExp.name }}</option>
-                                                {% endfor %}
-                                              </select>
-                                         </div>
-                                         <div class="form-group col-4">
-                                             <label>Salary Scale</label>
-                                              <select id="salaryScale" name="salaryScale" class="form-control" >
-                                               <option value="{{ userProfile.salaryScale.id }}">{{ userProfile.salaryScale.name }}</option>
-                                               {% for salaryScale in salaryScales %}
-                                                <option value="{{ salaryScale.id }}">{{ salaryScale.name }}</option>
-                                                {% endfor %}
-                                              </select>
-                                         </div>
-                                          <div class="form-group col-4">
-                                              <label>Education Level</label>
-                                              <select id="educationLevel" name="educationLevel" class="form-control" >
-                                              <option value="{{ userProfile.educationLevel.id }}">{{ userProfile.educationLevel.name }}</option>
-                                               {% for EducationLevel in EducationLevels %}
-                                                <option value="{{ EducationLevel.id }}">{{ EducationLevel.name }}</option>
-                                               {% endfor %}
-                                              </select>
-                                          </div>
-                                          <div class="form-group col-4">
-                                              <label>Profession</label>
-                                              <select id="jobType" name="jobType" class="form-control" >
-                                               <option value="{{ userProfile.jobType.id }}">{{ userProfile.jobType.name }}</option>
-                                               {% for JobType in JobTypes %}
-                                                <option value="{{ JobType.id }}">{{ JobType.name }}</option>
-                                               {% endfor %}
-                                              </select>
-                                          </div>
-                                          <div class="form-group col-4">
-                                              {% if userProfile.upload %}
-                                                <a href="{{userProfile.upload.url}}" ><i class="far fa-file "></i> CV</a><br>
-                                             {% endif %}
 
+                                        <div class="form-group col-4">
+                                            <label>Start Date</label>
+                                            <input  type="date" class="form-control" id="startDate" name="startDate" autofocus  >
+                                        </div>
 
+                                        <div class="form-group col-4">
+                                            <label>End Date</label>
+                                            <input  type="date" class="form-control" id="endDate" name="endDate" autofocus  >
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label>Description</label>
+                                            <textarea class="form-control" rows="10" id="description" cols="140" name="description">
+
+                                            </textarea>
+                                        </div>
+                                          <div class="form-group col-4">
+                                              {% if position.attachment %}
+                                                <a href="{{position.attachment.url}}" ><i class="far fa-file "></i> Attachment</a><br>
+                                              {% endif %}
                                               <br>
-                                              <input type="file" name="upload" id="upload" class="form-control" >
-
+                                              <input type="file" name="attachment" id="attachment" class="form-control" >
                                           </div>
                                     </div>
 
-                                   <input type="submit"  class="btn btn-primary btn-lg btn-block col-2" value="Update">
+                                   <input type="submit"  class="btn btn-primary btn-lg btn-block col-2" value="Create">
                              </form>
                       </div>
                     </div>
