@@ -21,5 +21,7 @@ urlpatterns = [
     path('viewApplicants/<int:id>', views.showApplicants, name='viewApplicants'),
     path('sortedList/<int:id>',views.showSortedApplicants,name="showSortedApplicants"),
     path('detail/<int:id>', views.JobDetail),
-    path('position/',views.CreatePosition),
+    path('position/',views.DisplayPositions),
+    path('addPosition/',views.CreatePosition, name="addPosition"),
+
 ]

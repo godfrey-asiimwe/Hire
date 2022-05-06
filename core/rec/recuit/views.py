@@ -5,10 +5,10 @@ from django.shortcuts import render, redirect
 
 from django.contrib import messages
 import datetime
-from .forms import NewUserForm, UserProfileForm
+from .forms import NewUserForm, UserProfileForm, JobPositionForm
 
 # Create your views here.
-from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserProfile, Applications
+from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserProfile, Applications, JobPosition
 
 
 def Dashboard(request):
@@ -270,6 +270,20 @@ def JobDetail(request, id):
 
 
 def CreatePosition(request):
+    form = JobPositionForm(request.POST, request.FILES)
 
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Successfully Saved")
+        redirect('/positions')
+    else:
+        JobPositionForm()
     context = {}
     return render(request, 'position.html', context)
+
+
+def DisplayPositions(request):
+    positions = JobPosition.objects.all()
+
+    context = {'positions': positions}
+    return render(request, 'positions.html', context)

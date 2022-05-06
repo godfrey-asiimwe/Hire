@@ -152,14 +152,14 @@ class JobPosition(models.Model):
     date = models.DateField()
     project = models.CharField(max_length=50)
     requestedBy = models.ForeignKey(
-        User, on_delete=models.CASCADE)
+        User, on_delete=models.CASCADE,null=True)
     contractType = models.ForeignKey(
         ContractType, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=50)
     quantity = models.IntegerField()
     startDate = models.DateField()
     endDate = models.DateField()
-    GradeStep = models.CharField(max_length=50,null=True)
+    GradeStep = models.CharField(max_length=50,blank=True,null=True)
     salaryRange = models.ForeignKey(
         salaryScale, on_delete=models.CASCADE, null=True)
     proposed = models.CharField(max_length=50,null=True)

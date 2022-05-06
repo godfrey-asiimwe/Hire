@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block page_content %}
+{% load humanize %}
+{% load user_tags %}
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>List of Positions Created</h1>
+          </div>
+          <div class="row">
+                <!-- DataTales Example -->
+                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+
+                    <div class="card">
+
+                       <div class="card-header">
+                            <h4></h4>
+                           <div class="card-header-action">
+                                 <a href="/addPosition" style="color: white !important" class="btn btn-primary">New Position</a>
+                           </div>
+                      </div>
+                      <div class="card-body p-0">
+                        <div class="table-responsive" style="padding: 20px !important;">
+                          <table class="table table-striped" id="dataTable" width="100%" style="padding:50px !important;" cellspacing="0">
+                            <thead>
+                               <tr>
+                                    <th>Date</th>
+                                    <th>Project</th>
+                                    <th>Title</th>
+                                    <th>Quantity</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Description</th>
+                                    <th>Attachment</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                              <tbody>
+                                    {% for position in positions %}
+                                        <tr>
+                                            <td>{{position.date}}</td>
+                                            <td>{{position.project}}</td>
+                                            <td>{{position.title}}</td>
+                                            <td>{{position.quantity}}</td>
+                                            <td>{{position.startDate}}</td>
+                                            <td>{{position.endDate}}</td>
+                                            <td>{{position.description|safe}}</td>
+                                            <td>{{position.attachment}}</td>
+
+                                        {% if request.user|has_group:"HOD" %}
+                                        <td>
+                                            <a href=""><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+                                            <a href="">Delete</a>
+                                        </td>
+                                        {% else %}
+                                         <td>
+                                            <a href=""><span class="glyphicon glyphicon-pencil" >Approve</span></a>
+                                        </td>
+                                        {% endif %}
+                                        </tr>
+                                       {% endfor %}
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+          </div>
+        </section>
+      </div>
+{% endblock %}
