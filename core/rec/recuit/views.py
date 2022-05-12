@@ -209,6 +209,12 @@ def JobAppliedFor(request):
 def activeJobs(request):
     today = datetime.datetime.today()
     jobs = Job.objects.all().filter(deadline__gt=today)
+
+    if request.method == "POST":
+        query_name = request.POST.get('name', None)
+        if query_name:
+            results = Job.objects.filter(name__contains=query_name)
+            return render(request, 'activeJobs.html', {"results": results})
     context = {'jobs': jobs}
     return render(request, 'activeJobs.html', context)
 
