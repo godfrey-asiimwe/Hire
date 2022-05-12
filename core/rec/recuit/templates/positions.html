@@ -16,9 +16,12 @@
 
                        <div class="card-header">
                             <h4></h4>
-                           <div class="card-header-action">
+                            {% if request.user|has_group:"HOD" %}
+                              <div class="card-header-action">
                                  <a href="/addPosition" style="color: white !important" class="btn btn-primary">New Position</a>
-                           </div>
+                              </div>
+                            {% endif %}
+
                       </div>
                       <div class="card-body p-0">
                         <div class="table-responsive" style="padding: 20px !important;">
@@ -52,6 +55,10 @@
                                             <a href=""><span class="glyphicon glyphicon-pencil" >Edit</span></a>
                                             <a href="">Delete</a>
                                         </td>
+                                        {% elif request.user|has_group:"HR"  %}
+                                            <td>
+                                                <a href=""><span class="glyphicon glyphicon-pencil" >Approve</span></a>
+                                            </td>
                                         {% else %}
                                          <td>
                                             <a href=""><span class="glyphicon glyphicon-pencil" >Approve</span></a>

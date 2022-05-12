@@ -208,7 +208,6 @@ def JobAppliedFor(request):
 
 def activeJobs(request):
     today = datetime.datetime.today()
-
     if request.method == "POST":
         query_name = request.POST.get('name', None)
         if query_name:
@@ -292,6 +291,13 @@ def CreatePosition(request):
 
 def DisplayPositions(request):
     positions = JobPosition.objects.all()
+
+    context = {'positions': positions}
+    return render(request, 'positions.html', context)
+
+
+def DisplayPositionForApproval(request):
+    positions = JobPosition.objects.all().filter(hr=0)
 
     context = {'positions': positions}
     return render(request, 'positions.html', context)
