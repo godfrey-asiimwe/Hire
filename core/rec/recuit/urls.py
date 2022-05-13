@@ -23,6 +23,9 @@ urlpatterns = [
     path('detail/<int:id>', views.JobDetail),
     path('position/',views.DisplayPositions),
     path('papprove/', views.DisplayPositionForApproval),
+    path('approveHr/<int:id>', views.approvePositionHR),
+    path('cmapprove/', views.DisplayPositionForCMApproval),
+    path('approveCM/<int:id>', views.approvePositionCM),
     path('addPosition/',views.CreatePosition, name="addPosition"),
 
 ]

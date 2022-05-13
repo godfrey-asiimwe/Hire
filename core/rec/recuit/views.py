@@ -301,3 +301,28 @@ def DisplayPositionForApproval(request):
 
     context = {'positions': positions}
     return render(request, 'positions.html', context)
+
+
+def DisplayPositionForCMApproval(request):
+    positions = JobPosition.objects.all().filter(hr=1, cm=0)
+
+    context = {'positions': positions}
+    return render(request, 'positions2.html', context)
+
+
+def approvePositionHR(request, id):
+    position = JobPosition.objects.get(id=id)
+    if request.method == "POST":
+        position.hr = 1
+        position.save()
+        return redirect("/papprove")
+    return render(request, 'approvePositionHr.html', {'position': position})
+
+
+def approvePositionCM(request, id):
+    position = JobPosition.objects.get(id=id)
+    if request.method == "POST":
+        position.cm = 1
+        position.save()
+        return redirect("/cmapprove")
+    return render(request, 'approvePositionHr.html', {'position': position})
