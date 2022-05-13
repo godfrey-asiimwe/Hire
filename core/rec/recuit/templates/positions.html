@@ -11,18 +11,15 @@
           <div class="row">
                 <!-- DataTales Example -->
                 <div class="col-lg-12 col-md-12 col-12 col-sm-12">
-
                     <div class="card">
-
                        <div class="card-header">
                             <h4></h4>
                             {% if request.user|has_group:"HOD" %}
                               <div class="card-header-action">
-                                 <a href="/addPosition" style="color: white !important" class="btn btn-primary">New Position</a>
+                                 <a href="/createJob" style="color: white !important" class="btn btn-primary">New Position</a>
                               </div>
                             {% endif %}
-
-                      </div>
+                       </div>
                       <div class="card-body p-0">
                         <div class="table-responsive" style="padding: 20px !important;">
                           <table class="table table-striped" id="dataTable" width="100%" style="padding:50px !important;" cellspacing="0">

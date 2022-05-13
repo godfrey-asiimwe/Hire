@@ -14,6 +14,7 @@ urlpatterns = [
     path('updateprofile/<int:id>', views.updateProfile),
     path('apply/<int:id>', views.JobApplications),
     path('applied/',views.JobAppliedFor),
+    path('createJob',views.CreateJob),
     path('active/',views.activeJobs),
     path('notactive/',views.expiredJobs),
     path('activeApp/',views.activeApps),

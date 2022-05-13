@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 
 from django.contrib import messages
 import datetime
-from .forms import NewUserForm, UserProfileForm, JobPositionForm
+from .forms import NewUserForm, UserProfileForm, JobPositionForm, JobForm
 
 # Create your views here.
 from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserProfile, Applications, JobPosition
@@ -204,6 +204,18 @@ def JobAppliedFor(request):
     applications = Applications.objects.all().filter(user=request.user)
     context = {'applications': applications}
     return render(request, 'appliedFor.html', context)
+
+
+def CreateJob(request):
+    form = JobForm(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Successfully Saved")
+        redirect('/active')
+    else:
+        JobForm()
+    context = {}
+    return render(request, 'NewJob.html', context)
 
 
 def activeJobs(request):

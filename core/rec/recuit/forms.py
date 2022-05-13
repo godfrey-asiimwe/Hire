@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 # Create your forms here.
-from .models import UserProfile, JobPosition
+from .models import UserProfile, JobPosition, Job
 
 
 class NewUserForm(UserCreationForm):
@@ -31,3 +31,9 @@ class JobPositionForm(forms.ModelForm):
     class Meta:
         model = JobPosition
         fields = ["date", "project", "title", "quantity", "description", "startDate", "endDate", "attachment"]
+
+
+class JobForm(forms.ModelForm):
+    class Meta:
+        model = Job
+        fields = ["jobType","yearOfExp","salaryScale","educationLevel","name","description","activities","requirements","deadline"]

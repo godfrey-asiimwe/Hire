@@ -16,6 +16,11 @@
                     <div class="card">
                       <div class="card-header">
                         <h4>List of Jobs</h4>
+                        {% if request.user|has_group:"HR" %}
+                          <div class="card-header-action">
+                             <a href="/addJob" style="color: white !important" class="btn btn-primary">New Job</a>
+                          </div>
+                        {% endif %}
                       </div>
                       <div class="card-body p-0">
                         <div class="table-responsive" style="padding: 20px !important;">
