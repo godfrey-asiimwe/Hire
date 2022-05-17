@@ -36,4 +36,4 @@ class JobPositionForm(forms.ModelForm):
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ["jobType","yearOfExp","salaryScale","educationLevel","name","description","activities","requirements","deadline"]
+        fields = ["jobPosition","jobType","yearOfExp","salaryScale","educationLevel","name","description","activities","requirements","deadline"]

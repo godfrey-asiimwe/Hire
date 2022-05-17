@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
   <link rel="stylesheet" href="{% static 'css/components.css' %}"  />
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
 </head>
 
   <div id="app">
@@ -109,7 +110,7 @@
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="/cmapprove/">Positions</a></li>
                 </ul>
-               </li>
+              </li>
               {% endif %}
 
             </ul>
@@ -123,7 +124,7 @@
         <div class="footer-right">
           ---
         </div>
-      </footer>
+     </footer>
     </div>
   </div>
 
@@ -148,6 +149,12 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
-
+  <script>
+    window.onload = function() {
+        CKEDITOR.replace('description');
+        CKEDITOR.replace('activities');
+        CKEDITOR.replace('requirements');
+    };
+  </script>
 </body>
 </html>

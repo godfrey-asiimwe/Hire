@@ -23,49 +23,77 @@
                              <form action="" method = "post" class="" enctype="multipart/form-data">
                                     {% csrf_token %}
                                    <div class="row">
+                                         <div class="form-group col-4">
+                                              <label>Approved Position</label>
+                                              <select id="jobPosition" name="jobPosition" class="form-control" >
+                                               {% for jobPosition in jobPositions %}
+                                                <option value="{{ jobPosition.id }}">{{ jobPosition.title }}</option>
+                                               {% endfor %}
+                                              </select>
+                                         </div>
+                                         <div class="form-group col-4">
+                                              <label>Profession</label>
+                                              <select id="jobType" name="jobType" class="form-control" >
+                                               {% for JobType in JobTypes %}
+                                                <option value="{{ JobType.id }}">{{ JobType.name }}</option>
+                                               {% endfor %}
+                                              </select>
+                                         </div>
+
+                                          <div class="form-group col-4">
+                                             <label>Years of Experience</label>
+                                              <select id="yearOfExp" name="yearOfExp" class="form-control" >
+                                                {% for YearOfExp in years %}
+                                                <option value="{{ YearOfExp.id }}">{{ YearOfExp.name }}</option>
+                                                {% endfor %}
+                                              </select>
+                                         </div>
+                                         <div class="form-group col-4">
+                                             <label>Salary Scale</label>
+                                              <select id="salaryScale" name="salaryScale" class="form-control" >
+                                               {% for salaryScale in salaryScales %}
+                                                <option value="{{ salaryScale.id }}">{{ salaryScale.name }}</option>
+                                                {% endfor %}
+                                              </select>
+                                         </div>
+                                          <div class="form-group col-4">
+                                              <label>Education Level</label>
+                                              <select id="educationLevel" name="educationLevel" class="form-control" >
+                                               {% for EducationLevel in EducationLevels %}
+                                                <option value="{{ EducationLevel.id }}">{{ EducationLevel.name }}</option>
+                                               {% endfor %}
+                                              </select>
+                                          </div>
+
                                         <div class="form-group col-4">
-                                            <label>Date</label>
-                                            <input  type="date" class="form-control" id="date" name="date" autofocus  >
-                                        </div>
-                                        <div class="form-group col-4">
-                                            <label>Project</label>
-                                            <input  type="text" class="form-control" id="project" name="project" autofocus >
-                                        </div>
-                                        <div class="form-group col-4">
-                                            <label>Title</label>
-                                            <input  type="text" class="form-control" id="title" name="title" autofocus >
+                                            <label>Name</label>
+                                            <input  type="text" class="form-control" id="name" name="name" autofocus >
                                         </div>
                                    </div>
                                    <div class="row">
-                                        <div class="form-group col-4">
-                                             <label>Quantity</label>
-                                             <input  type="text" class="form-control" id="quantity" name="quantity" autofocus >
-                                        </div>
-
-                                        <div class="form-group col-4">
-                                            <label>Start Date</label>
-                                            <input  type="date" class="form-control" id="startDate" name="startDate" autofocus  >
-                                        </div>
-
-                                        <div class="form-group col-4">
-                                            <label>End Date</label>
-                                            <input  type="date" class="form-control" id="endDate" name="endDate" autofocus  >
-                                        </div>
                                         <div class="form-group col-4">
                                             <label>Description</label>
                                             <textarea class="form-control" rows="10" id="description" cols="140" name="description">
 
                                             </textarea>
                                         </div>
-                                          <div class="form-group col-4">
-                                              {% if position.attachment %}
-                                                <a href="{{position.attachment.url}}" ><i class="far fa-file "></i> Attachment</a><br>
-                                              {% endif %}
-                                              <br>
-                                              <input type="file" name="attachment" id="attachment" class="form-control" >
-                                          </div>
-                                    </div>
+                                       <div class="form-group col-4">
+                                            <label>Activities</label>
+                                            <textarea class="form-control" rows="10" id="activities" cols="140" name="activities">
 
+                                            </textarea>
+                                       </div>
+                                       <div class="form-group col-4">
+                                            <label>Requirements</label>
+                                            <textarea class="form-control" rows="10" id="requirements" cols="140" name="requirements">
+
+                                            </textarea>
+                                       </div>
+                                       <div class="form-group col-4">
+                                            <label>Dead line</label>
+                                            <input  type="date" class="form-control" id="deadline" name="deadline" autofocus  >
+                                       </div>
+                                   </div>
                                    <input type="submit"  class="btn btn-primary btn-lg btn-block col-2" value="Create">
                              </form>
                       </div>

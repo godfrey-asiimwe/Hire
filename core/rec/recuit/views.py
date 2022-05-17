@@ -214,7 +214,14 @@ def CreateJob(request):
         redirect('/active')
     else:
         JobForm()
-    context = {}
+
+    years = YearOfExp.objects.all().order_by("-created")
+    salaryScales = salaryScale.objects.all().order_by("-created")
+    EducationLevels = EducationLevel.objects.all().order_by("-created")
+    JobTypes = JobType.objects.all().order_by("-created")
+    jobPositions = JobPosition.objects.all().filter(cm=1)
+
+    context = {'years': years, 'salaryScales': salaryScales, 'EducationLevels': EducationLevels, 'JobTypes': JobTypes , 'jobPositions':jobPositions}
     return render(request, 'NewJob.html', context)
 
 

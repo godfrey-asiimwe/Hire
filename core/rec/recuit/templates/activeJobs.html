@@ -18,7 +18,7 @@
                         <h4>List of Jobs</h4>
                         {% if request.user|has_group:"HR" %}
                           <div class="card-header-action">
-                             <a href="/addJob" style="color: white !important" class="btn btn-primary">New Job</a>
+                             <a href="/createJob" style="color: white !important" class="btn btn-primary">New Job</a>
                           </div>
                         {% endif %}
                       </div>
