@@ -23,17 +23,17 @@
        <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg" style="color:green;"><i class="fas fa-bars"></i></a></li>
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg" style=""><i class="fas fa-bars"></i></a></li>
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
-             {% if request.user|has_group:"treasurer" %}
+             {% if request.user|has_group:"admin" %}
                 <li class="dropdown dropdown-list-toggle" style="margin-top:5px;margin-right:10px;">
-                    <a href="/admin"  style=""><i class="fas fa-bars" style=""></i>  Admin Panel</a>
+                    <a href="/admin"  style="color:white!important;"><i class="fas fa-bars" style=""></i>  Admin Panel</a>
                 </li>
              {% endif %}
 
-          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" style="color:#000066;">
+          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user" style="color:white!important;">
             <img alt="image" src="../static/img/avatar/avatar-1.png" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">{{ user.username }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
