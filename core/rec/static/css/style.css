@@ -339,6 +339,9 @@ select.form-control:not([size]):not([multiple]) {
   align-items: center;
   margin: 0; }
 
+.bg-green {
+     background-color: #d02d34 !important;
+}
 .custom-switch-input {
   position: absolute;
   z-index: -1;
