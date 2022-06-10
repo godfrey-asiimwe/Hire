@@ -23,13 +23,11 @@ admin.site.site_header = "Recruitment System"
 admin.site.site_title = "Recruitment System"
 admin.site.index_title = "Welcome to Recruitment System"
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('recuit.urls')),
     path("recuit/", include("django.contrib.auth.urls")),
-    path('ckeditor/',include('ckeditor_uploader.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^', include("river_admin.urls")),
 ]
 if settings.DEBUG:
