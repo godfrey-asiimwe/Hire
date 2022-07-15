@@ -5,10 +5,11 @@ from django.shortcuts import render, redirect
 
 from django.contrib import messages
 import datetime
-from .forms import NewUserForm, UserProfileForm, JobPositionForm, JobForm
+from .forms import NewUserForm, UserProfileForm, JobPositionForm, JobForm, BioDataForm, InterviewDataForm
 
 # Create your views here.
-from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserProfile, Applications, JobPosition
+from .models import Job, YearOfExp, salaryScale, EducationLevel, JobType, UserProfile, Applications, JobPosition, \
+    Questions, interview
 
 
 def Dashboard(request):
@@ -146,6 +147,26 @@ def Profile(request, id):
     context = {'years': years, 'salaryScales': salaryScales, 'EducationLevels': EducationLevels, 'JobTypes': JobTypes,
                'userProfile': userProfile}
     return render(request, 'profile.html', context)
+
+
+def BioData(request, id):
+    userProfile = UserProfile.objects.get(user=request.user)
+
+    context = {'userProfile': userProfile}
+    return render(request, 'biodata.html', context)
+
+
+def UpdateBioData(request, id):
+    form = BioDataForm(request.POST, request.FILES)
+
+    if form.is_valid():
+        form.user = request.user
+        form.save()
+        return redirect("/biodata/" + str(request.user.id))
+    else:
+        messages.error(request, form.errors)
+    context = {}
+    return render(request, 'biodata.html', context)
 
 
 def updateProfile(request, id):
@@ -289,11 +310,51 @@ def showSortedApplicants(request, id):
     return render(request, 'SortedList.html', context)
 
 
+def interviews(request, id):
+    applications = Applications.objects.filter(job=id)
+
+    job = Job.objects.get(id=id)
+
+    questions = Questions.objects.all()
+
+    userprofile = []
+    for applicant in applications:
+        userprofile += UserProfile.objects.filter(user=applicant.user, jobType=job.jobType).order_by("-educationLevel")
+
+    interviews = interview.objects.all().filter(interviewer=request.user)
+
+    context = {'applications': applications, 'job': job, 'userprofile': userprofile, 'questions': questions,
+               'interviews': interviews}
+    return render(request, 'interview.html', context)
+
+
+def UpdateInterview(request, id):
+    job = Job.objects.get(id=id)
+    form = InterviewDataForm(request.POST, request.FILES)
+    if form.is_valid():
+        form.instance.interviewer = request.user
+        form.instance.job = job
+
+        #check if the question is marked for this user by this interviewer. let him know that he has marked the question
+        interviews = interview.objects.all().filter(interviewer=request.user,userprofile=form.instance.userprofile,questions=form.instance.questions)
+
+        if not interviews.exists():
+            form.save()
+        else:
+            messages.error(request, "The question is already Marked ")
+
+        return redirect("/interview/" + str(id))
+    else:
+        messages.error(request, form.errors)
+    context = {}
+    return render(request, 'interview.html', context)
+
+
 def JobDetail(request, id):
     job = Job.objects.get(id=id)
 
     context = {'job': job}
-    return render(request, 'JobDetail.html', context)
+    return render(request, 'interview.html', context)
 
 
 def CreatePosition(request):

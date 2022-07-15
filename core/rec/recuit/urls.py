@@ -28,5 +28,9 @@ urlpatterns = [
     path('cmapprove/', views.DisplayPositionForCMApproval),
     path('approveCM/<int:id>', views.approvePositionCM),
     path('addPosition/',views.CreatePosition, name="addPosition"),
+    path('biodata/<int:id>', views.BioData, name="BioData"),
+    path('updateBioData/<int:id>', views.UpdateBioData),
+    path('interview/<int:id>',views.interviews,name="interview"),
+    path('updateInterview/<int:id>',views.UpdateInterview, name='updateInterview'),
 
 ]
