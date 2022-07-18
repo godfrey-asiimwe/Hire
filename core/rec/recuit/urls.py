@@ -31,6 +31,8 @@ urlpatterns = [
     path('biodata/<int:id>', views.BioData, name="BioData"),
     path('updateBioData/<int:id>', views.UpdateBioData),
     path('interview/<int:id>',views.interviews,name="interview"),
+    path('marks/<int:id>', views.interviews2, name="marks"),
     path('updateInterview/<int:id>',views.UpdateInterview, name='updateInterview'),
+    path('results/',views.JobResults, name='Jobresults'),
 
 ]

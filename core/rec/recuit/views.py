@@ -321,11 +321,49 @@ def interviews(request, id):
     for applicant in applications:
         userprofile += UserProfile.objects.filter(user=applicant.user, jobType=job.jobType).order_by("-educationLevel")
 
-    interviews = interview.objects.all().filter(interviewer=request.user)
+    for user in userprofile:
+        marks = interview.objects.filter(interviewer=request.user, job=job, userprofile=user).values_list('mark',
+                                                                                                          flat=True)
+        totalmark = sum(marks)
+        user.phone = totalmark
+
+    interviews = interview.objects.all().filter(interviewer=request.user, job=job)
 
     context = {'applications': applications, 'job': job, 'userprofile': userprofile, 'questions': questions,
                'interviews': interviews}
     return render(request, 'interview.html', context)
+
+
+def interviews2(request, id):
+    applications = Applications.objects.filter(job=id)
+
+    job = Job.objects.get(id=id)
+
+    questions = Questions.objects.all()
+
+    userprofile = []
+    for applicant in applications:
+        userprofile += UserProfile.objects.filter(user=applicant.user, jobType=job.jobType).order_by("-educationLevel")
+
+    for user in userprofile:
+        marks = interview.objects.filter(interviewer=request.user, job=job, userprofile=user).values_list('mark',
+                                                                                                          flat=True)
+        totalmark = sum(marks)
+        user.phone = totalmark
+
+    interviews = interview.objects.all().filter(interviewer=request.user, job=job)
+
+    context = {'applications': applications, 'job': job, 'userprofile': userprofile, 'questions': questions,
+               'interviews': interviews}
+    return render(request, 'viewMarks.html', context)
+
+
+def JobResults(request):
+
+    job = Job.objects.all()
+
+    context = {'job': job}
+    return render(request, 'JobResults.html', context)
 
 
 def UpdateInterview(request, id):
@@ -335,8 +373,9 @@ def UpdateInterview(request, id):
         form.instance.interviewer = request.user
         form.instance.job = job
 
-        #check if the question is marked for this user by this interviewer. let him know that he has marked the question
-        interviews = interview.objects.all().filter(interviewer=request.user,userprofile=form.instance.userprofile,questions=form.instance.questions)
+        # check if the question is marked for this user by this interviewer. let him know that he has marked the question
+        interviews = interview.objects.all().filter(interviewer=request.user, userprofile=form.instance.userprofile,
+                                                    questions=form.instance.questions)
 
         if not interviews.exists():
             form.save()

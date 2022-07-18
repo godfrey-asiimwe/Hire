@@ -245,7 +245,7 @@ class interview(models.Model):
     questions = models.ForeignKey(
         Questions, on_delete=models.CASCADE, null=True)
 
-    mark = models.CharField(max_length=50)
+    mark = models.IntegerField(max_length=50)
 
     interviewer =models.ForeignKey(
         User, on_delete=models.CASCADE, null=True)

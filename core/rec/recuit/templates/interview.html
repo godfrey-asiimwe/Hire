@@ -15,6 +15,7 @@
                       <div class="card-header">
                         <h4>{{job.name}} ---- Interviewer</h4>
                          <div class="card-header-action">
+                           <a href="/marks/{{job.id}}" class="btn btn-primary">View Marks <i class="fas fa-chevron-right"></i></a>
                            <a href="/viewApplicants/{{job.id}}" class="btn btn-warning">Back <i class="fas fa-chevron-right"></i></a>
                          </div>
                       </div>
@@ -22,10 +23,10 @@
                              <form action="/updateInterview/{{job.id}}" method = "post" class="" enctype="multipart/form-data">
                                     {% csrf_token %}
                                  <a class="messages ">
-            {% for message in messages %}
-            <a  {% if message.tags %} class=" {{ message.tags }} btn btn-danger" style="color:Green !important;" {% endif %}> {{ message }} </a>
-            {% endfor %}
-          </a><br><br>
+                                    {% for message in messages %}
+                                    <a  {% if message.tags %} class=" {{ message.tags }} btn btn-primary" style="color:white !important;" {% endif %}> {{ message }} </a>
+                                    {% endfor %}
+                                 </a>
                                    <div class="row">
                                          <div class="form-group col-3">
                                              <label>Applicant</label>
@@ -68,24 +69,24 @@
                                    <tr>
                                         <th>Applicant</th>
                                         <th>Question</th>
-                                        <th>Mark</th>
-                                        <th>Interviewer</th>
-                                   </tr>
+                                        <th>Mark (1 poor, 2 Averange, 3 Good, 4 Very Good, 5 Outstanding)</th>
                               </thead>
                               <tbody>
                                 {% for interview in interviews %}
+
                                     <tr>
                                         <td>{{interview.userprofile}}</td>
                                         <td>{{interview.questions|safe}}</td>
                                         <td>{{interview.mark}}</td>
-                                        <td>{{interview.interviewer}}</td>
                                     </tr>
+
                                 {% endfor %}
                               </tbody>
                           </table>
                         </div>
                         </div>
                     </div>
+
                 </div>
           </div>
         </section>
